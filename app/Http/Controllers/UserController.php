@@ -28,20 +28,39 @@ class UserController extends Controller
         //     'password' => Hash::make('12345'), // Hashing password sebelum disimpan
         // ];
 
-        $data = [
-            'level_id' => 2,
-            'username' => 'manager_tiga',
-            'nama' => 'Manager 3',
-            'password' => Hash::make('12345'), // Hashing password sebelum disimpan
-        ];
+        // $data = [
+        //     'level_id' => 2,
+        //     'username' => 'manager_tiga',
+        //     'nama' => 'Manager 3',
+        //     'password' => Hash::make('12345'), // Hashing password sebelum disimpan
+        // ];
 
-        // Menambahkan data baru menggunakan metode Eloquent create
-        UserModel::create($data);
+        // // Menambahkan data baru menggunakan metode Eloquent create
+        // UserModel::create($data);
         
-        // UserModel::insert($data); // Tambahkan data ke tabel m_user
+        // // UserModel::insert($data); // Tambahkan data ke tabel m_user
 
-        // Coba akses model UserModel
-        $user = UserModel::all(); // Ambil semua data dari tabel m_user
+        // // Coba akses model UserModel
+        // $user = UserModel::all(); // Ambil semua data dari tabel m_user
+        // return view('user', ['data' => $user]);
+
+        // $user = UserModel::find(1);
+        // return view('user', ['data' => $user]);
+
+        // $user = UserModel::where('level_id', 1)->first();
+        // return view('user', ['data' => $user]);
+
+        // $user = UserModel::firstWhere('level_id', 1);
+        // return view('user', ['data' => $user]);
+
+        // $user = UserModel::findOr(4, ['username', 'nama'], function() {
+        //     abort(404);
+        // });
+        // return view('user', ['data' => $user]);
+
+        $user = UserModel::findOr(20, ['username', 'nama'], function() {
+            abort(404);
+        });
         return view('user', ['data' => $user]);
     }
 }
