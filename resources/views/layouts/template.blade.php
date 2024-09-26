@@ -16,7 +16,7 @@
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
-  @include('layoutes.header')
+  @include('layouts.header')
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
@@ -28,14 +28,14 @@
     </a>
 
     <!-- Sidebar -->
-    @include('layoutes.sidebar')
+    @include('layouts.sidebar')
     <!-- /.sidebar -->
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    @include('layoutes.breadcrumb')
+    @include('layouts.breadcrumb')
 
     <!-- Main content -->
     <section class="content">
@@ -45,7 +45,7 @@
   </div>
   <!-- /.content-wrapper -->
 
-  @include('layoutes.footer')
+  @include('layouts.footer')
 </div>
 <!-- ./wrapper -->
 
@@ -54,6 +54,6 @@
 <!-- Bootstrap 4 -->
 <script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
-<script src="{{ asset(adminlte/dist/js/adminlte.min.js) }}"></script>
+<script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
 </body>
 </html>
