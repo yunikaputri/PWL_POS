@@ -131,5 +131,34 @@
           <i class="fas fa-th-large"></i>
         </a>
       </li>
+      <!-- Logout button -->
+      <li class="nav-item">
+        <a href="#" class="nav-link" onclick="confirmLogout()">
+            <button class="btn btn-danger btn-sm">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </a>
+    </li>    
     </ul>
   </nav>
+  <!-- /.navbar -->
+  <!-- SweetAlert2 Script -->
+  <script src="{{ asset('adminlte/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+  <script>
+      function confirmLogout() {
+          Swal.fire({
+              title: 'Apakah Anda yakin?',
+              text: "Anda akan keluar dari aplikasi!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Ya!',
+              cancelButtonText: 'Tidak, tetap di sini!'
+          }).then((result) => {
+              if (result.isConfirmed) {
+                  window.location.href = "{{ url('logout') }}"; // URL logout
+              }
+          });
+      }
+  </script>
