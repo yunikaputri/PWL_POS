@@ -15,14 +15,30 @@
             @if (session('error'))
                 <div class="alert alert-danger">{{ session('error') }}</div>
             @endif
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group row">
+                        <label class="col-1 control-label col-form-label">Filter </label>
+                        <div class="col-3">
+                            <select class="form-control" id="kategori_id" name="kategori_id" required>
+                                <option value="">- Semua -</option>
+                                @foreach ($kategori as $item)
+                                    <option value="{{ $item->kategori_id }}">{{ $item->kategori_nama }}</option>
+                                @endforeach
+                            </select>
+                            <small class="form-text text-muted">Kategori Barang</small>
+                        </div>
+                    </div>
+                </div>
+            </div> 
             <table class="table table-bordered table-striped table-hover table-sm" id="table_barang">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nama Barang</th>
                         <th>Kode Barang</th>
-                        <th>Harga Jual</th>
                         <th>Harga Beli</th>
+                        <th>Harga Jual</th>
                         <th>Kategori Barang</th>
                         <th>Aksi</th>
                     </tr>
@@ -44,6 +60,20 @@
             $('#myModal').load(url, function() {
                 $('#myModal').modal('show');
             });
+        }
+
+        function formatRupiah(angka) {
+            let numberString = angka.toString();
+            let sisa = numberString.length % 3;
+            let rupiah = numberString.substr(0, sisa);
+            let ribuan = numberString.substr(sisa).match(/\d{3}/g);
+
+            if (ribuan) {
+                let separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+
+            return 'Rp ' + rupiah;
         }
 
         var dataBarang;
@@ -78,16 +108,22 @@
                         searchable: true
                     },
                     {
-                        data: "harga_jual",
-                        className: "",
-                        orderable: true,
-                        searchable: false
-                    },
-                    {
                         data: "harga_beli",
                         className: "",
                         orderable: true,
-                        searchable: false
+                        searchable: false,
+                        render: function(data, type, row){
+                            return formatRupiah(data)
+                        }
+                    },
+                    {
+                        data: "harga_jual",
+                        className: "",
+                        orderable: true,
+                        searchable: false,
+                        render: function(data, type, row){
+                            return formatRupiah(data)
+                        }
                     },
                     {
                         data: "kategori.kategori_nama",
@@ -103,7 +139,7 @@
                     }
                 ]
             });
-            $('#barang_id').on('change', function() {
+            $('#kategori_id').on('change', function() {
                 dataBarang.ajax.reload();
             });
         });
