@@ -4,8 +4,9 @@
         <div class="card-header">
             <h3 class="card-title">{{ $page->title }}</h3>
             <div class="card-tools">
-                <a class="btn btn-sm btn-primary mt-1" href="{{ url('barang/create') }}">Tambah</a>
-                <button onclick="modalAction('{{ url('barang/create_ajax') }}')" class="btn btn-sm btn-success mt-1">Tambah Ajax</button>
+                <button onclick="modalAction('{{url('/barang/import')}}')" class="btn btn-sm btn-success mt-1">Import Barang</button>
+                <a class="btn btn-sm btn-primary mt-1" href="{{ url('barang/create') }}">Tambah Data</a>
+                <button onclick="modalAction('{{ url('barang/create_ajax') }}')" class="btn btn-sm btn-success mt-1">Tambah Data (Ajax)</button>
             </div>
         </div>
         <div class="card-body">
@@ -15,6 +16,7 @@
             @if (session('error'))
                 <div class="alert alert-danger">{{ session('error') }}</div>
             @endif
+            <!-- untuk Filter data --> 
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group row">
@@ -60,7 +62,7 @@
             $('#myModal').load(url, function() {
                 $('#myModal').modal('show');
             });
-        }
+    };
 
         function formatRupiah(angka) {
             let numberString = angka.toString();
@@ -85,31 +87,35 @@
                     "dataType": "json",
                     "type": "POST",
                     "data": function(d) {
-                        d.kategori_id = $('#kategori_id').val(); // Perbaiki variabel jika ada filter
+                        d.kategori_id = $('#kategori_id').val(); 
                     }
                 },
                 columns: [
                     {
                         data: "DT_RowIndex",
                         className: "text-center",
+                        wwidth: "5%",
                         orderable: false,
                         searchable: false
                     },
                     {
                         data: "barang_nama",
                         className: "",
+                        width: "37%",
                         orderable: true,
                         searchable: true
                     },
                     {
                         data: "barang_kode",
                         className: "",
+                        width: "10%",
                         orderable: true,
                         searchable: true
                     },
                     {
                         data: "harga_beli",
                         className: "",
+                        width: "10%",
                         orderable: true,
                         searchable: false,
                         render: function(data, type, row){
@@ -119,6 +125,7 @@
                     {
                         data: "harga_jual",
                         className: "",
+                        width: "10%",
                         orderable: true,
                         searchable: false,
                         render: function(data, type, row){
@@ -128,17 +135,26 @@
                     {
                         data: "kategori.kategori_nama",
                         className: "",
+                        width: "14%",
                         orderable: true,
                         searchable: true
                     },
                     {
                         data: "aksi",
-                        className: "",
+                        className: "text-center",
+                        width: "14%",
                         orderable: false,
                         searchable: false
                     }
                 ]
             });
+
+            $('#table-barang_filter input').unbind().bind().on('keyup', function(e) {
+                if (e.keyCode == 13) { // enter key
+                    tableBarang.search(this.value).draw();
+                }
+            });
+
             $('#kategori_id').on('change', function() {
                 dataBarang.ajax.reload();
             });

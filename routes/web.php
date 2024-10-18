@@ -108,6 +108,8 @@ Route::middleware('auth')->group(function () { // artinya semua route di dalam g
         Route::get('/barang/{id}/delete_ajax', [BarangController::class, 'confirm_ajax']); // Untuk tampilkan form confirm delete barang Ajax
         Route::delete('/barang/{id}/delete_ajax', [BarangController::class, 'delete_ajax']); // Untuk hapus data barang Ajax
         Route::delete('/barang/{id}', [BarangController::class, 'destroy']); // menghapus data barang
+        Route::get('/barang/import', [BarangController::class, 'import']); //ajax import excel
+        Route::post('/barang/import_ajax', [BarangController::class, 'import_ajax']); //ajax import excel
     });
 
     //route supplier
