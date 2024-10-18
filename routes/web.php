@@ -50,6 +50,8 @@ Route::middleware('auth')->group(function () { // artinya semua route di dalam g
         Route::get('/user/{id}/delete_ajax', [UserController::class, 'confirm_ajax']); // Untuk tampilkan form confirm delete user Ajax
         Route::delete('/user/{id}/delete_ajax', [UserController::class, 'delete_ajax']); // Untuk hapus data user Ajax
         Route::delete('/user/{id}', [UserController::class, 'destroy']); // menghapus data user
+        Route::get('/user/import', [UserController::class, 'import']); //ajax import excel
+        Route::post('/user/import_ajax', [UserController::class, 'import_ajax']); //ajax import excel
     });
 
     //route level
@@ -69,6 +71,8 @@ Route::middleware('auth')->group(function () { // artinya semua route di dalam g
         Route::get('/level/{id}/delete_ajax', [LevelController::class, 'confirm_ajax']); // Untuk tampilkan form confirm delete level Ajax
         Route::delete('/level/{id}/delete_ajax', [LevelController::class, 'delete_ajax']); // Untuk hapus data level Ajax
         Route::delete('/level/{id}', [LevelController::class, 'destroy']); // menghapus data level
+        Route::get('/level/import', [LevelController::class, 'import']); //ajax import excel
+        Route::post('/level/import_ajax', [LevelController::class, 'import_ajax']); //ajax import excel
     });
 
     //route kategori
@@ -88,6 +92,8 @@ Route::middleware('auth')->group(function () { // artinya semua route di dalam g
         Route::get('/kategori/{id}/delete_ajax', [KategoriController::class, 'confirm_ajax']); // Untuk tampilkan form confirm delete kategori Ajax
         Route::delete('/kategori/{id}/delete_ajax', [KategoriController::class, 'delete_ajax']); // Untuk hapus data kategori Ajax
         Route::delete('/kategori/{id}', [KategoriController::class, 'destroy']);
+        Route::get('/kategori/import', [KategoriController::class, 'import']); //ajax import excel
+        Route::post('/kategori/import_ajax', [KategoriController::class, 'import_ajax']); //ajax import excel
     });
 
     // artinya semua route di dalam gorup ini harus punya role ADM (Administrator) dan MNG (Manager)
@@ -129,5 +135,7 @@ Route::middleware('auth')->group(function () { // artinya semua route di dalam g
         Route::get('/supplier/{id}/delete_ajax', [SupplierController::class, 'confirm_ajax']); // Untuk tampilkan form confirm delete supplier Ajax
         Route::delete('/supplier/{id}/delete_ajax', [SupplierController::class, 'delete_ajax']); // Untuk hapus data supplier Ajax
         Route::delete('/supplier/{id}', [SupplierController::class, 'destroy']); // menghapus data supplier
+        Route::get('/supplier/import', [SupplierController::class, 'import']); //ajax import excel
+        Route::post('/supplier/import_ajax', [SupplierController::class, 'import_ajax']); //ajax import excel
     });
 });

@@ -4,6 +4,7 @@
         <div class="card-header">
             <h3 class="card-title">{{ $page->title }}</h3>
             <div class="card-tools">
+                <button onclick="modalAction('{{url('/kategori/import')}}')" class="btn btn-sm btn-success mt-1">Import Kategori</button>
                 <a class="btn btn-sm btn-primary mt-1" href="{{ url('kategori/create') }}">Tambah</a>
                 <button onclick="modalAction('{{ url('kategori/create_ajax') }}')" class="btn btn-sm btn-success mt-1">Tambah Ajax</button>
             </div>
@@ -56,25 +57,36 @@
                     // nomor urut dari laravel datatable addIndexColumn()
                     data: "DT_RowIndex",
                     className: "text-center",
+                    width: "5%",
                     orderable: false,
                     searchable: false
                 }, {
                     data: "kategori_kode",
                     className: "",
+                    width: "10%",
                     orderable: true,
                     searchable: true
                 }, {
                     data: "kategori_nama",
                     className: "",
+                    width: "37%",
                     orderable: true,
                     searchable: true
                 }, {
                     data: "aksi",
                     className: "",
+                    width: "14%",
                     orderable: false,
                     searchable: false
                 }]
             });
+
+            $('#table-kategori_filter input').unbind().bind().on('keyup', function(e) {
+                if (e.keyCode == 13) { // enter key
+                    dataKategori.search(this.value).draw();
+                }
+            });
+
             $('#level_id').on('change',function(){
                 dataKategori.ajax.reload();
             })

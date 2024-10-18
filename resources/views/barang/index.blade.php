@@ -94,7 +94,7 @@
                     {
                         data: "DT_RowIndex",
                         className: "text-center",
-                        wwidth: "5%",
+                        width: "5%",
                         orderable: false,
                         searchable: false
                     },
@@ -151,7 +151,7 @@
 
             $('#table-barang_filter input').unbind().bind().on('keyup', function(e) {
                 if (e.keyCode == 13) { // enter key
-                    tableBarang.search(this.value).draw();
+                    dataBarang.search(this.value).draw();
                 }
             });
 
