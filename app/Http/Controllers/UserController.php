@@ -9,6 +9,7 @@ use Yajra\DataTables\Facades\Datatables;
 use Illuminate\Support\Facades\Validator;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use Illuminate\Support\Facades\Hash;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class UserController extends Controller
 {
@@ -588,4 +589,20 @@ class UserController extends Controller
         $writer->save('php://output'); // download file excel ke browser
         exit; // keluar proses
     } // end function export_excel
+
+    public function export_pdf() {
+        // ambil data user yang akan di export
+        $user = UserModel::select('user_id', 'level_id', 'username', 'nama')
+        ->orderBy('level_id')
+        ->with('level')
+        ->get();
+
+        // use Barryvdh\DomPDF\Facade\Pdf;
+        $pdf = Pdf::loadView('user.export_pdf', ['user' => $user]);
+        $pdf->setPaper('A4', 'portrait'); // set ukuran kertas dan orientasi
+        $pdf->setOption("isRemoteEnabled", true); // set true jika ada gambar dari url
+        $pdf->render();
+
+        return $pdf->stream('Data User '.date('Y-m-d H:i:s').'.pdf');
+    }
 }

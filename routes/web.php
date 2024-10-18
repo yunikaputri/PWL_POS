@@ -53,6 +53,7 @@ Route::middleware('auth')->group(function () { // artinya semua route di dalam g
         Route::get('/user/import', [UserController::class, 'import']); //ajax import excel
         Route::post('/user/import_ajax', [UserController::class, 'import_ajax']); //ajax import excel
         Route::get('/user/export_excel',[UserController::class,'export_excel']); // ajax export excel
+        Route::get('/user/export_pdf', [UserController::class, 'export_pdf']); //ajax export pdf
     });
 
     //route level
@@ -75,6 +76,7 @@ Route::middleware('auth')->group(function () { // artinya semua route di dalam g
         Route::get('/level/import', [LevelController::class, 'import']); //ajax import excel
         Route::post('/level/import_ajax', [LevelController::class, 'import_ajax']); //ajax import excel
         Route::get('/level/export_excel',[LevelController::class,'export_excel']); // ajax export excel
+        Route::get('/level/export_pdf', [LevelController::class, 'export_pdf']); //ajax export pdf
     });
 
     //route kategori
@@ -97,6 +99,7 @@ Route::middleware('auth')->group(function () { // artinya semua route di dalam g
         Route::get('/kategori/import', [KategoriController::class, 'import']); //ajax import excel
         Route::post('/kategori/import_ajax', [KategoriController::class, 'import_ajax']); //ajax import excel
         Route::get('/kategori/export_excel',[kategoricontroller::class,'export_excel']); // ajax export excel
+        Route::get('/kategori/export_pdf', [kategoricontroller::class, 'export_pdf']); //ajax export pdf
     });
 
     // artinya semua route di dalam gorup ini harus punya role ADM (Administrator) dan MNG (Manager)
@@ -143,5 +146,6 @@ Route::middleware('auth')->group(function () { // artinya semua route di dalam g
         Route::get('/supplier/import', [SupplierController::class, 'import']); //ajax import excel
         Route::post('/supplier/import_ajax', [SupplierController::class, 'import_ajax']); //ajax import excel
         Route::get('/supplier/export_excel',[SupplierController::class,'export_excel']); // ajax export excel
+        Route::get('/supplier/export_pdf', [SupplierController::class, 'export_pdf']); //ajax export pdf
     });
 });

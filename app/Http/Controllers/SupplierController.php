@@ -6,7 +6,8 @@ use App\Models\suppliermodel;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
-use PhpOffice\PhpSpreadsheet\IOFactory; 
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class suppliercontroller extends Controller
@@ -336,4 +337,18 @@ class suppliercontroller extends Controller
         $writer->save('php://output'); // download file excel ke browser
         exit; // keluar proses
     } // end function export_excel
+
+    public function export_pdf() {
+        // ambil data barang yang akan di export
+        $supplier = SupplierModel::select('supplier_id', 'supplier_kode', 'supplier_nama', 'supplier_alamat')
+        ->get();
+
+        // use Barryvdh\DomPDF\Facade\Pdf;
+        $pdf = Pdf::loadView('supplier.export_pdf', ['supplier' => $supplier]);
+        $pdf->setPaper('A4', 'portrait'); // set ukuran kertas dan orientasi
+        $pdf->setOption("isRemoteEnabled", true); // set true jika ada gambar dari url
+        $pdf->render();
+
+        return $pdf->stream('Data Barang '.date('Y-m-d H:i:s').'.pdf');
+    }
 }

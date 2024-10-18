@@ -8,16 +8,17 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use PhpOffice\PhpSpreadsheet\IOFactory; 
 use Yajra\DataTables\Facades\DataTables;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class KategoriController extends Controller
 {
     public function index(){
         $breadcrumb = (object)[
-            'title'=>'Daftar kategori barang',
+            'title'=>'Daftar kategori kategori',
             'list'=>['Home','kategori']
         ];
         $page = (object)[
-            'title'=>'Daftar kategori barang yang terdaftar dalam sistem '
+            'title'=>'Daftar kategori kategori yang terdaftar dalam sistem '
         ];
         $activeMenu ='kategori';
         $kategori = kategorimodel::all();
@@ -47,11 +48,11 @@ class KategoriController extends Controller
 
     public function create(){
         $breadcrumb = (object)[
-            'title'=>'Tambah kategori barang',
+            'title'=>'Tambah kategori kategori',
             'list'=>['Home','kategori','tambah']
         ];
         $page = (object)[
-            'title'=>'Tambah kategori barang baru'
+            'title'=>'Tambah kategori baru'
         ];
         $activeMenu = 'kategori';
         $kategori = kategorimodel::all();
@@ -332,4 +333,18 @@ class KategoriController extends Controller
         $writer->save('php://output'); // download file excel ke browser
         exit; // keluar proses
     } // end function export_excel
+
+    public function export_pdf() {
+        // ambil data kategori yang akan di export
+        $kategori = KategoriModel::select('kategori_kode', 'kategori_nama')
+        ->get();
+
+        // use Barryvdh\DomPDF\Facade\Pdf;
+        $pdf = Pdf::loadView('kategori.export_pdf', ['kategori' => $kategori]);
+        $pdf->setPaper('A4', 'portrait'); // set ukuran kertas dan orientasi
+        $pdf->setOption("isRemoteEnabled", true); // set true jika ada gambar dari url
+        $pdf->render();
+
+        return $pdf->stream('Data Kategori '.date('Y-m-d H:i:s').'.pdf');
+    }
 }
