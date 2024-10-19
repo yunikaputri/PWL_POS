@@ -210,10 +210,14 @@ class BarangController extends Controller
 
         //     return redirect('/user');
 
-        $breadcrumb = (object)[
-            'title' =>'Daftar Barang',
-            'list'=>['Home','barang']
+        $breadcrumb = (object) [
+            'title' => 'Barang',
+            'list' => [
+                ['name' => 'Home', 'url' => url('/')],
+                ['name' => 'Barang', 'url' => url('/barang')]
+            ]
         ];
+
         $page = (object)[
             'title'=>'Daftar Barang yang terdaftar dalam sistem'
         ];
@@ -255,7 +259,10 @@ class BarangController extends Controller
     public function create(){
         $breadcrumb =(object)[
             'title'=>'Tambah Barang',
-            'list'=>['Home','data barang']
+            'list'=>[
+                ['name' => 'Home', 'url' => url('/')],
+                ['name' => 'data barang', 'url' => url('/barang')]
+            ]
         ];
         $page =(object)[
             'title'=>'Tambah Barang baru'

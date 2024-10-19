@@ -9,7 +9,10 @@ class WelcomeController extends Controller
     public function index(){
         $breadcrumb = (object)[
             'title' => 'Selamat Datang',
-            'list' => ['Home', 'Welcome']
+            'list' => [
+                ['name' => 'Home', 'url' => url('/')],
+                ['name' => 'Welcome', 'url' => url('/welcome')]
+            ]
         ];
         $activeMenu = 'Dashboard';
 

@@ -27,7 +27,10 @@ class levelcontroller extends Controller
 
         $breadcrumb = (object)[
             'title' => 'Daftar level',
-            'list' => ['Home', 'level']
+            'list' => [
+                ['name' => 'Home', 'url' => url('/')],
+                ['name' => 'Level', 'url' => url('/level')],
+            ]
         ];
         $page = (object) [
             'title' => 'Daftar level yang terdaftar dalam sistem'
@@ -102,7 +105,11 @@ class levelcontroller extends Controller
 
         $breadcrumb = (object)[
             'title' => 'Detail Level',
-            'list' => ['Home', 'level', 'detail']
+            'list' =>[
+                ['name' => 'Home', 'url' => url('/')],
+                ['name' => 'Level', 'url' => url('/level')],
+                ['name' => 'Level', 'url' => url('/detail')]
+            ]
         ];
         $page = (object)[
             'title' => 'Detail Level'
@@ -117,7 +124,11 @@ class levelcontroller extends Controller
 
         $breadcrumb = (object)[
             'title' => 'Edit Level',
-            'list' => ['Home', 'level', 'edit']
+            'list' =>[
+                ['name' => 'Home', 'url' => url('/')],
+                ['name' => 'Level', 'url' => url('/level')],
+                ['name' => 'Level', 'url' => url('/edit')]
+            ]
         ];
         $page = (object)[
             'title' => 'Edit level'

@@ -212,7 +212,10 @@ class UserController extends Controller
     {
         $breadcrumb = (object)[
             'title' => 'Daftar user',
-            'list' => ['Home', 'user'],
+            'list' =>[
+                ['name' => 'Home', 'url' => url('/')],
+                ['name' => 'Welcome', 'url' => url('/welcome')]
+            ]
         ];
 
         $page = (object)[
@@ -260,7 +263,11 @@ class UserController extends Controller
     {
         $breadcrumb = (object) [
             'title' => 'Tambah User',
-            'list' => ['Home', 'User', 'Tambah']
+            'list' =>[
+                ['name' => 'Home', 'url' => url('/')],
+                ['name' => 'User', 'url' => url('/user')],
+                ['name' => 'User', 'url' => url('/tambah')]
+            ]
         ];
 
         $page = (object) [
@@ -299,7 +306,11 @@ class UserController extends Controller
 
         $breadcrumb = (object) [
             'title' => 'Detail user',
-            'list' => ['Home', 'User', 'Detail']
+            'list' =>[
+                ['name' => 'Home', 'url' => url('/')],
+                ['name' => 'User', 'url' => url('/user')],
+                ['name' => 'User', 'url' => url('/detail')]
+            ]
         ];
 
         $page = (object)[
@@ -317,7 +328,11 @@ class UserController extends Controller
 
         $breadcrumb = (object)[
             'title' => 'Edit user',
-            'list' => ['Home', 'User', 'Edit']
+            'list' =>[
+                ['name' => 'Home', 'url' => url('/')],
+                ['name' => 'User', 'url' => url('/user')],
+                ['name' => 'User', 'url' => url('/edit')]
+            ]
         ];
 
         $page = (object)[

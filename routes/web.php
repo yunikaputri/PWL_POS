@@ -9,6 +9,7 @@ use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 use Monolog\Level;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -148,4 +149,10 @@ Route::middleware('auth')->group(function () { // artinya semua route di dalam g
         Route::get('/supplier/export_excel',[SupplierController::class,'export_excel']); // ajax export excel
         Route::get('/supplier/export_pdf', [SupplierController::class, 'export_pdf']); //ajax export pdf
     });
+
+    //profile 
+    Route::group(['middleware' => 'authorize:ADM,MNG,STF,CUS'], function () {
+        Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+        Route::patch('/profile/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
+    });    
 });

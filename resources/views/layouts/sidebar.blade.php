@@ -13,12 +13,22 @@
   <!-- Sidebar Menu -->
   <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <li class="nav-item">
+      <li class="nav-item">
         <a href="{{ url('/')}}" class="nav-link {{($activeMenu == 'dashboard')? 'active' : ''}}">
           <i class="nav-icon fas fa-tachometer-alt"></i>
           <p>Dashboard</p>
         </a>
       </li>
+      
+      <!-- Profile Section -->
+      <li class="nav-item">
+        <a href="{{ route('profile.index') }}" class="nav-link {{ ($activeMenu == 'profile') ? 'active' : '' }}">
+          <i class="nav-icon fas fa-user-circle"></i>
+          <p>Profile</p>
+        </a>
+      </li>      
+
+      <!-- Data Pengguna Section -->
       <li class="nav-header">Data Pengguna</li>
       <li class="nav-item">
         <a href="{{ url('/level')}}" class="nav-link {{($activeMenu == 'level')? 'active' : ''}}">
@@ -32,6 +42,8 @@
           <p>Data User</p>
         </a>
       </li>
+
+      <!-- Data Barang Section -->
       <li class="nav-header">Data Barang</li>
       <li class="nav-item">
         <a href="{{ url('/kategori')}}" class="nav-link {{($activeMenu == 'kategori')? 'active' : ''}}">
@@ -51,6 +63,8 @@
           <p>Supplier</p>
         </a>
       </li>
+
+      <!-- Data Transaksi Section -->
       <li class="nav-header">Data Transaksi</li>
       <li class="nav-item">
         <a href="{{ url('/stok')}}" class="nav-link {{($activeMenu == 'stok')? 'active' : ''}}">

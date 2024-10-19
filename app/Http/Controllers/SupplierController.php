@@ -15,7 +15,10 @@ class suppliercontroller extends Controller
     public function index(){
         $breadcrumb = (object)[
             'title'=>'Daftar supplier',
-            'list'=>['Home','supplier']
+            'list'=>[
+                ['name' => 'Home', 'url' => url('/')],
+                ['name' => 'Supplier', 'url' => url('/supplier')]
+            ]
         ];
         $page =(object)[
             'title'=>'Daftar supplier yang terdaftar dalam sistem'
@@ -54,7 +57,11 @@ class suppliercontroller extends Controller
     public function create(){
         $breadcrumb = (object)[
             'title'=>'Tambah supplier',
-            'list'=>['Home','supplier','tambah']
+            'list'=>[
+                ['name' => 'Home', 'url' => url('/')],
+                ['name' => 'Supplier', 'url' => url('/supplier')],
+                ['name' => 'Supplier', 'url' => url('/tambah')],
+            ]
         ];
         $page = (object)[
             'title'=>'Tambah supplier baru'
@@ -95,7 +102,11 @@ class suppliercontroller extends Controller
         $supplier = suppliermodel::find($supplier_id);
         $breadcrumb = (object)[
             'title'=>'Edit supplier',
-            'list'=>['Home','supplier','edit']
+            'list'=>[
+                ['name' => 'Home', 'url' => url('/')],
+                ['name' => 'Supplier', 'url' => url('/supplier')],
+                ['name' => 'Supplier', 'url' => url('/edit')],
+            ]
         ];
         $page = (object)[
             'title' => 'Edit supplier'
