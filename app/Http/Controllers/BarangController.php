@@ -211,7 +211,7 @@ class BarangController extends Controller
         //     return redirect('/user');
 
         $breadcrumb = (object) [
-            'title' => 'Barang',
+            'title' => 'Daftar Barang',
             'list' => [
                 ['name' => 'Home', 'url' => url('/')],
                 ['name' => 'Barang', 'url' => url('/barang')]

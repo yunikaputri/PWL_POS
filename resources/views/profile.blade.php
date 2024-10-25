@@ -19,9 +19,9 @@
                     <!-- Bagian Profile Picture, Nama, dan Role -->
                     <div class="text-center">
                         @if($user->avatar)
-                            <img src="{{ asset('storage/photos/'.$user->avatar) }}" class="img-fluid rounded-circle shadow" style="width: 250px; height: 250px;">
+                            <img src="{{ asset('storage/photos/'.$user->avatar) }}" class="img-fluid rounded-circle shadow" style="width: 150px; height: 150px;">
                         @else
-                            <img src="{{ asset('/public/img/pp.png') }}" class="img-fluid rounded-circle shadow" style="width: 100px; height: 100px;">
+                            <img src="{{ asset('/public/img/pp.png') }}" class="img-fluid rounded-circle shadow" style="width: 150px; height: 150px;">
                         @endif
                         <h5>{{ $user->nama }}</h5>
                         <p class="text-muted">{{ $user->username }}</p>

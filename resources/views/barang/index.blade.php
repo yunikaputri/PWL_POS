@@ -1,5 +1,6 @@
 @extends('layouts.template')
 @section('content')
+<div id="myModal" class="modal fade animate shake" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" data-width="75%" aria-hidden="true"></div>
     <div class="card card-outline card-primary">
         <div class="card-header">
             <h3 class="card-title">{{ $page->title }}</h3>
@@ -17,7 +18,7 @@
             @if (session('error'))
                 <div class="alert alert-danger">{{ session('error') }}</div>
             @endif
-            <!-- untuk Filter data --> 
+            <!-- untuk Filter data -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group row">
@@ -33,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
             <table class="table table-bordered table-striped table-hover table-sm" id="table_barang">
                 <thead>
                     <tr>
@@ -49,9 +50,6 @@
             </table>
         </div>
     </div>
-    <div id="myModal" class="modal fade animate shake" tabindex="-1" role="dialog" data-backdrop="static"
-         data-keyboard="false" data-width="75%" aria-hidden="true">
-    </div>
 @endsection
 
 @push('css')
@@ -59,10 +57,10 @@
 
 @push('js')
     <script>
-        function modalAction(url = '') {
-            $('#myModal').load(url, function() {
-                $('#myModal').modal('show');
-            });
+    function modalAction(url = '') {
+        $('#myModal').load(url, function() {
+            $('#myModal').modal('show');
+        });
     };
 
         function formatRupiah(angka) {
