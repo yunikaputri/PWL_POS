@@ -24,14 +24,14 @@ class LevelController extends Controller
     // Method untuk menampilkan data level tertentu
     public function show(LevelModel $level)
     {
-        return LevelModel::find($level);
+        return response()->json($level);
     }
 
     // Method untuk memperbarui data level
     public function update(Request $request, LevelModel $level)
     {
-        $level->update($request->all());
-        return LevelModel::find($level);
+        $level->update($request->all());  
+        return response()->json($level);
     }
 
     // Method untuk menghapus data level
